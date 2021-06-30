@@ -140,11 +140,11 @@
                 <div class="row align-items-center py-4">
 
                     <div class="col-lg-6 col-7">
-                        <h6 class="h2 text-white d-inline-block mb-0">Break First Booked</h6>
+                        <h6 class="h2 text-white d-inline-block mb-0">Add Food</h6>
                         <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                                 <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                                <li class="breadcrumb-item"><a href="#">Break First</a></li>
+                                <li class="breadcrumb-item"><a href="#">Add Food</a></li>
                             </ol>
                         </nav>
                     </div>
@@ -159,91 +159,59 @@
     <!-- Page content break first -->
     <!--star-->
     <div class="row">
-
-        <div class="col-xl-11 ml-5 mt--5">
+        <div class="col-xl-11 ml-5 mt--5 order-xl-1">
             <div class="card">
-                <div class="card-header border-0">
+                <div class="card-header">
                     <div class="row align-items-center">
-                        <div class="col">
-                            <h3 class="mb-0">Break First Details</h3>
-                        </div>
-                        <div>
-                            <form class="navbar-search navbar-search-light form-inline mr-sm-3" id="navbar-search-main">
-                                <div class="form-group mb-0">
-                                    <div class="input-group input-group-alternative input-group-merge">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-search"></i></span>
-                                        </div>
-                                        <input class="form-control" placeholder="Search" type="text">
-                                    </div>
-                                </div>
-                                <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                            </form>
+                        <div class="col-8">
+                            <h3 class="mb-0">Add New Food </h3>
                         </div>
                     </div>
                 </div>
-                <div class="table-responsive">
-                    <!-- Projects table -->
-                    <table class="table align-items-center table-flush">
-                        <thead class="thead-light">
-                        <tr>
-                            <th scope="col"> User Name</th>
-                            <th scope="col">Order ID</th>
-                            <th scope="col">Order Details</th>
-                            <th scope="col">Total Price</th>
-                            <th scope="col">Confirm</th>
+                <div class="card-body">
+                    <form>
+                        <h6 class="heading-small text-muted mb-4">Food details</h6>
+                        <div class="pl-lg-4">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-name">Food Name</label>
+                                        <input type="text" id="input-name" class="form-control" placeholder="Food Name">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" >Food Type</label>
+                                       <select class="form-control">
+                                           <option>Break First</option>
+                                           <option>Lunch</option>
+                                           <option>Dinner</option>
+                                           <option>Other</option>
+                                       </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-price">Price</label>
+                                        <input type="number" id="input-price" class="form-control" min="0" placeholder="Price" >
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-qty">Quantity</label>
+                                        <input type="number" id="input-qty" class="form-control" min="0" placeholder="QTY" >
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="my-4" />
+                            <input type="button" name="addfood" value="Add Food" class="form-control btn btn-sm btn-primary">
+                        </div>
+                        <hr class="my-4" />
 
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">
-                                Supun Chalaka
-                            </th>
-                            <td>
-                              123658
-                            </td>
-                            <td>
-                                <ol>
-                                    <li>Bun : 2</li>
-                                    <li>Milk Packet : 2</li>
-                                </ol>
-                            </td>
-                            <td>
-                                Rs. 1000
-                            </td>
-                            <td>
-                                <button class="btn btn-sm btn-primary">Issue</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                Sasini De Alwis
-                            </th>
-                            <td>
-                                123610
-                            </td>
-                            <td>
-                                <ol>
-                                    <li>Bun : 1</li>
-                                    <li>Milk Packet : 1</li>
-                                    <li>Milo : 2</li>
-                                    <li>Chocolate : 5</li>
 
-                                </ol>
-                            </td>
-                            <td>
-                                Rs. 1500
-                            </td>
-                            <td>
-                                <button class="btn btn-sm btn-primary">Issue</button>
-                            </td>
-                        </tr>
-
-                        </tbody>
-                    </table>
+                    </form>
                 </div>
             </div>
         </div>
