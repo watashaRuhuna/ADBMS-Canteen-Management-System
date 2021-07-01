@@ -169,24 +169,28 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <div class="alert alert-primary mt-3" role="alert" th:if="${param.success}">
+                        Item successfully added!
+                    </div>
+
+                    <form method="post" th:object="${addNewFoodFromController}" th:action="@{/AddNewFoodService}">
                         <h6 class="heading-small text-muted mb-4">Food details</h6>
                         <div class="pl-lg-4">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-name">Food Name</label>
-                                        <input type="text" id="input-name" class="form-control" placeholder="Food Name">
+                                        <input type="text" id="input-name" class="form-control" placeholder="Food Name" th:field="*{food_name}">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" >Food Type</label>
-                                       <select class="form-control">
-                                           <option>Break First</option>
-                                           <option>Lunch</option>
-                                           <option>Dinner</option>
-                                           <option>Other</option>
+                                       <select class="form-control" th:field="*{category_type}">
+                                           <option value="Break First">Break First</option>
+                                           <option value="Lunch">Lunch</option>
+                                           <option value="Dinner">Dinner</option>
+                                           <option value="Other">Other</option>
                                        </select>
                                     </div>
                                 </div>
@@ -195,18 +199,18 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-price">Price</label>
-                                        <input type="number" id="input-price" class="form-control" min="0" placeholder="Price" >
+                                        <input type="number" id="input-price" class="form-control" min="0" placeholder="Price" th:field="*{unit_price}" >
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-qty">Quantity</label>
-                                        <input type="number" id="input-qty" class="form-control" min="0" placeholder="QTY" >
+                                        <input type="number" id="input-qty" class="form-control" min="0" placeholder="QTY" th:field="*{food_qty}">
                                     </div>
                                 </div>
                             </div>
                             <hr class="my-4" />
-                            <input type="button" name="addfood" value="Add Food" class="form-control btn btn-sm btn-primary">
+                            <input type="submit" name="addfood" value="Add Food" class="form-control btn btn-sm btn-primary">
                         </div>
                         <hr class="my-4" />
 

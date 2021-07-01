@@ -236,37 +236,15 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <th scope="row">
-                                                   Rice
-                                                </th>
-                                                <td>
-                                                   Rs. 65
+                                            <tr th:each="foods:${allfood}">
+                                                <td th:text="${foods.food_name}">
+
                                                 </td>
-                                                <td>
-                                                   1000
+                                                <td th:text="${foods.unit_price}">
+
                                                 </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    Milk
-                                                </th>
-                                                <td>
-                                                    Rs. 40
-                                                </td>
-                                                <td>
-                                                    120
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    Chocolate
-                                                </th>
-                                                <td>
-                                                    Rs. 50
-                                                </td>
-                                                <td>
-                                                    100
+                                                <td th:text="${foods.food_qty}">
+                                                   
                                                 </td>
                                             </tr>
                                             </tbody>
