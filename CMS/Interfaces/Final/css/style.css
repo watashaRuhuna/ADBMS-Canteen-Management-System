@@ -114,6 +114,10 @@ a,
     transition: all .3s ease-in-out;
 }
 
+.bg-default{
+	background-image: url(images/gallery-img-03.jpg) no-repeat;
+}
+
 .btn-custom {
     margin-top: 20px;
     background-color: transparent !important;
