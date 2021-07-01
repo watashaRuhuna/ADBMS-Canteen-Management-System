@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  xmlns:th="https://www.thymeleaf.org"><!-- Basic -->
+<html xmlns:th="https://www.thymeleaf.org"><!-- Basic -->
 
 <head>
     <meta charset="utf-8">
@@ -100,7 +100,8 @@
     <!-- Topnav -->
     <nav class="navbar navbar-top navbar-expand navbar-dark border-bottom" style="background-color: #079ea6">
         <div class="container-fluid">
-            <h2 class="text-white text-uppercase text-center h2 font-weight-bold ">FOT Canteen Management System | CMS</h2>
+            <h2 class="text-white text-uppercase text-center h2 font-weight-bold ">FOT Canteen Management System |
+                CMS</h2>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                 <ul class="navbar-nav align-items-center ml-auto ml-md-0 ">
@@ -175,13 +176,14 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label class="form-control-label" >Select Food</label>
-                                       <select class="form-control">
-                                           <option>Rice</option>
-                                           <option>Milk</option>
-                                           <option>Rolls</option>
-                                           <option>Chocolate</option>
-                                       </select>
+                                        <label class="form-control-label">Select Food</label>
+                                        <select class="form-control">
+                                            <option>Rice</option>
+                                            <option>Milk</option>
+                                            <option>Rolls</option>
+                                            <option>Chocolate</option>
+                                        </select>
+
                                     </div>
                                 </div>
                             </div>
@@ -189,20 +191,23 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-price">Price</label>
-                                        <input type="number" id="input-price" class="form-control" min="0" placeholder="Price" >
+                                        <input type="number" id="input-price" class="form-control" min="0"
+                                               placeholder="Price">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-qty">Quantity</label>
-                                        <input type="number" id="input-qty" class="form-control" min="0" placeholder="QTY" >
+                                        <input type="number" id="input-qty" class="form-control" min="0"
+                                               placeholder="QTY">
                                     </div>
                                 </div>
                             </div>
-                            <hr class="my-4" />
-                            <input type="button" name="addfood" value="Update" class="form-control btn btn-sm btn-primary">
+                            <hr class="my-4"/>
+                            <input type="button" name="addfood" value="Update"
+                                   class="form-control btn btn-sm btn-primary">
                         </div>
-                        <hr class="my-4" />
+                        <hr class="my-4"/>
 
 
                     </form>
@@ -231,6 +236,7 @@
                                             <thead class="thead-light">
                                             <tr>
                                                 <th scope="col">Name</th>
+                                                <th scope="col">Type</th>
                                                 <th scope="col">Price</th>
                                                 <th scope="col">QTY</th>
                                             </tr>
@@ -240,11 +246,14 @@
                                                 <td th:text="${foods.food_name}">
 
                                                 </td>
+                                                <td th:text="${foods.category_type}">
+
+                                                </td>
                                                 <td th:text="${foods.unit_price}">
 
                                                 </td>
                                                 <td th:text="${foods.food_qty}">
-                                                   
+
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -253,7 +262,7 @@
                                 </div>
                             </div>
                         </div>
-                        <hr class="my-4" />
+                        <hr class="my-4"/>
 
 
                     </form>
@@ -263,7 +272,6 @@
         <!--current details end-->
     </div>
     <!--end-->
-
 
 
     <!-- Footer -->
