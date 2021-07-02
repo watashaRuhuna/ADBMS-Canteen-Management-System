@@ -116,13 +116,16 @@
 			<!--card start-->
 			<div class="row special-list">
 				<!--single card-->
-				<div class="col-lg-4 col-md-6 special-grid">
+				<div class="col-lg-4 col-md-6 special-grid" th:each="foods:${allfoodlist}">
 					<div class="gallery-single fix">
 						<img src="indexassets/images/img-01.jpg" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>Special Drinks 1</h4>
-							<h5> $7.79</h5>
-							<button type="button" class="form-control btn btn-sm btn-secondary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Buy</button>
+						<div class="why-text" >
+							<h5 th:text="${foods.category_type}" style="font-size: small"></h5>
+							<h4 th:text="${foods.food_name}"></h4>
+
+							<h5 th:text="${foods.unit_price}"></h5>
+							<input type="hidden" name="foodid" th:value="${foods.food_id}">
+							<button type="button" class="form-control btn btn-sm btn-secondary" data-toggle="modal" data-target="#exampleModal">Buy</button>
 							<br>
 						</div>
 					</div>
@@ -156,7 +159,7 @@
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-								<button type="button" class="btn btn-primary">Confirm Order</button>
+								<button type="submit" class="btn btn-primary">Confirm Order</button>
 							</div>
 						</div>
 					</div>

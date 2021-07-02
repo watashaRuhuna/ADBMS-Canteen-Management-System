@@ -21,10 +21,13 @@ import java.util.Objects;
 public class Home {
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private FoodService foodService;
 
     @GetMapping(path = "/")
-    public String home() {
+    public String home(Model model) {
+        List<AddNewFoodEntity> addNewFoodEntities = foodService.getAllFood();
+        model.addAttribute("allfoodlist",addNewFoodEntities);
 
         return "index";
     }
