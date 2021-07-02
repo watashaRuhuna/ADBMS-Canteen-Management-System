@@ -13,6 +13,15 @@ public class AddNewFoodEntity {
     private String food_name;
     private Integer food_qty;
     private Float unit_price;
+    private String img;
+
+    public String getImg(){
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
 
     public Integer getFood_id() {
         return food_id;
