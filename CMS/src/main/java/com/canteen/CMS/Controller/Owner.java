@@ -9,6 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,11 +26,19 @@ public class Owner {
 
 
     @GetMapping(path = "owner_home")
-    public String home(Model model) {
+    public String home(Model model, HttpSession session) {
 
-        model.addAttribute("food_count",foodService.getCount());
+        List<String> ownerSession= (List<String>) session.getAttribute("ADMIN_SESSION");
+        if(ownerSession==null){
+            return "redirect:/";
+        }else{
 
-        return "owner/index";
+            model.addAttribute("food_count",foodService.getCount());
+            return "owner/index";
+        }
+
+
+
 
     }
     @GetMapping(path = "admin_login")
@@ -79,21 +90,31 @@ public class Owner {
 
 
     @PostMapping("/ownerlogin")
-    private String ownerLogin(@ModelAttribute("ownerLoginFromController") OwnerEntity ownerEntity){
+    private String ownerLogin(@ModelAttribute("ownerLoginFromController") OwnerEntity ownerEntity, HttpServletRequest request){
         /*System.out.println(ownerEntity.getOw_email());
         System.out.println(ownerEntity.getOw_pwd());*/
 
         OwnerEntity ownerLog = ownerService.ownerLogin(ownerEntity.getOw_email(),ownerEntity.getOw_pwd());
+        //session
+        List<String> ownerLoginSession= (List<String>) request.getSession().getAttribute("ADMIN_SESSION");
 
-        if (Objects.nonNull(ownerLog)) {
+
+        if(Objects.nonNull(ownerLog)) {
+            if(ownerLoginSession==null){
+                ownerLoginSession=new ArrayList<>();
+                request.getSession().setAttribute("ADMIN_SESSION",ownerLoginSession);
+            }
+            ownerLoginSession.add(ownerLog.getOw_id().toString());
+            ownerLoginSession.add(ownerLog.getOw_name());
+            ownerLoginSession.add(ownerLog.getOw_email());
+            ownerLoginSession.add(ownerLog.getOw_mobile());
+
+            request.getSession().setAttribute("ADMIN_SESSION",ownerLoginSession);
 
             return "redirect:/owner_home";
-        }
-        else {
+        }else {
             return "redirect:/admin_login";
         }
-
-
 
     }
 
