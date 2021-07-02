@@ -11,8 +11,8 @@ public class UserEntity {
 
     private Integer user_id;
     private String user_name;
-    private String user_email;
-    private String user_pwd;
+    private String email;
+    private String password;
     private String user_position;
     private String user_mobile;
 
@@ -32,20 +32,20 @@ public class UserEntity {
         this.user_name = user_name;
     }
 
-    public String getUser_email() {
-        return user_email;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUser_email(String user_email) {
-        this.user_email = user_email;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getUser_pwd() {
-        return user_pwd;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUser_pwd(String user_pwd) {
-        this.user_pwd = user_pwd;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getUser_position() {

@@ -23,5 +23,12 @@ public class FoodService {
         return (List<AddNewFoodEntity>) foodRepo.findAll();
     }
 
+    public Integer getCount(){
+
+        List<AddNewFoodEntity> getFoodCount = foodRepo.getCount();
+        return getFoodCount.size();
+
+    }
+
 
 }

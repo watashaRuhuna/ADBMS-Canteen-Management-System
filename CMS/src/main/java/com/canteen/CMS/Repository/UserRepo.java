@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 public interface UserRepo extends CrudRepository<UserEntity,Integer> {
 
 //    UserEntity findByEmailAndPassword(String user_email,String user_pwd);
-//    UserEntity findAllByEmailAndPassword(String email, String pwd);
+    UserEntity findByEmailAndPassword(String email, String pwd);
 
 }

@@ -23,9 +23,12 @@ public class Owner {
 
 
     @GetMapping(path = "owner_home")
-    public String home() {
+    public String home(Model model) {
+
+        model.addAttribute("food_count",foodService.getCount());
 
         return "owner/index";
+
     }
     @GetMapping(path = "admin_login")
     public String ownerLogin(Model model) {

@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Controller
@@ -41,30 +45,45 @@ public class Home {
         return "register";
     }
 
-  @PostMapping("/login")
-  @ResponseBody
-    private void userLogin(@ModelAttribute("UserLoginController") UserEntity userEntity){
+  @PostMapping(path = "/login")
+    public String userLogin(@ModelAttribute("UserLoginController") UserEntity userEntity, HttpServletRequest request){
+     UserEntity loged_user= userService.userLogin(userEntity.getEmail(),userEntity.getPassword());
 
+      List<String> users= (List<String>) request.getSession().getAttribute("ÜSER_SESSION");
 
-     userService.userLogin(userEntity.getUser_email(),userEntity.getUser_pwd());
+        if(Objects.nonNull(loged_user)) {
+            if(users==null){
+                users=new ArrayList<>();
+                request.getSession().setAttribute("ÜSER_SESSION",users);
+            }
+            users.add(loged_user.getUser_id().toString());
+            users.add(loged_user.getUser_name());
+            users.add(loged_user.getUser_mobile());
+            users.add(loged_user.getUser_position());
 
+            request.getSession().setAttribute("ÜSER_SESSION",users);
 
-//        if (Objects.nonNull(userlog)) {
-//
-//            return "redirect:/";
-//        }
-//        else {
-//            return "redirect:/login";
-//        }
-//      return userlog;
+            return "redirect:/profile";
+        }else {
+            return "redirect:/login";
+        }
     }
 
     @PostMapping("/AddNewUserService")
     private String addNewUser(@ModelAttribute("createUserController")UserEntity userEntity){
 
-        //addNewFoodEntity.setCategory_type("asd");
         userService.addUser(userEntity);
         return "redirect:/login";
     }
 
+    @GetMapping(path = "/profile")
+    public String profile(HttpSession session){
+        List<String> users= (List<String>) session.getAttribute("ÜSER_SESSION");
+
+        if(users==null){
+            return "redirect:/";
+        }else{
+            return "user/user_home";
+        }
+    }
 }

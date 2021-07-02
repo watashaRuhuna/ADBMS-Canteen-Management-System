@@ -12,11 +12,9 @@ public class UserService {
     @Autowired
     private UserRepo userRepo;
 
-    public void userLogin(String user_email, String user_pwd){
-//        UserEntity userEntity= userRepo.findByEmailAndPassword(user_email,user_pwd);
-        System.out.println(user_email);
-        System.out.println(user_pwd);
-//        return  userEntity;
+    public UserEntity userLogin(String user_email, String user_pwd){
+        UserEntity userEntity= userRepo.findByEmailAndPassword(user_email,user_pwd);
+        return  userEntity;
     }
 
     public void addUser(UserEntity userEntity){
