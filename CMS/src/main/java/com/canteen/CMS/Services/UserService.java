@@ -18,4 +18,9 @@ public class UserService {
         System.out.println(user_pwd);
 //        return  userEntity;
     }
+
+    public void addUser(UserEntity userEntity){
+        userRepo.save(userEntity);
+
+    }
 }

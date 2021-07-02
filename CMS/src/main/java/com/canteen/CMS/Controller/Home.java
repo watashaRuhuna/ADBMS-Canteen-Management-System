@@ -1,4 +1,5 @@
 package com.canteen.CMS.Controller;
+import com.canteen.CMS.Entity.AddNewFoodEntity;
 import com.canteen.CMS.Entity.UserEntity;
 import com.canteen.CMS.Services.FoodService;
 import com.canteen.CMS.Services.UserService;
@@ -33,8 +34,10 @@ public class Home {
     }
 
     @GetMapping(path = "register")
-    public String register() {
+    public String register(Model model) {
 
+        UserEntity createUser = new UserEntity();
+        model.addAttribute("createUserController",createUser);
         return "register";
     }
 
@@ -54,6 +57,14 @@ public class Home {
 //            return "redirect:/login";
 //        }
 //      return userlog;
+    }
+
+    @PostMapping("/AddNewUserService")
+    private String addNewUser(@ModelAttribute("createUserController")UserEntity userEntity){
+
+        //addNewFoodEntity.setCategory_type("asd");
+        userService.addUser(userEntity);
+        return "redirect:/login";
     }
 
 }
