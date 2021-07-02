@@ -33,8 +33,8 @@
 	<header class="top-navbar">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container">
-				<a class="navbar-brand" href="index.html">
-					<img src="indexassets/images/logo.png" alt="" />
+				<a class="navbar-brand" href="#">
+					<img src="indexassets/fotlogo.jpeg" height="50px" width="50px" alt="logo" />
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
 				  <span class="navbar-toggler-icon"></span>
@@ -53,47 +53,20 @@
 		</nav>
 	</header>
 	<!-- End header -->
-	
-	<!-- Start slides -->
-	
-		
 
-	
-	
-	
    <!-- Header -->
-    <div class="header bg-gradient-primary py-7 py-lg-8 pt-lg-9">
+    <div class="header bg-gradient-primary py-7 py-lg-8 pt-lg-9 mt-4">
       <div class="container">
         <div class="header-body text-center mb-7">
-          <div class="row justify-content-center">
-            <div class="col-xl-5 col-lg-6 col-md-8 px-5">
-              
-      </div>
-      <div class="separator separator-bottom separator-skew zindex-100">
-        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-          <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
-        </svg>
-      </div>
-    </div>
-    <!-- Page content -->
+
     <div class="container mt--8 pb-5">
       <div class="row justify-content-center">
         <div class="col-lg-5 col-md-7">
-          <div class="card bg-secondary border-0 mb-0">
-            <div class="card-header bg-transparent pb-5">
-              <div class="text-muted text-center mt-2 mb-3"><small>Sign in with</small></div>
-              <div class="btn-wrapper text-center">
-                <a href="#" class="btn btn-neutral btn-icon">
-                  
-                </a>
-                <a href="#" class="btn btn-neutral btn-icon">
-                  
-                                  </a>
-              </div>
-            </div>
-            <div class="card-body px-lg-5 py-lg-5">
-              <div class="text-center text-muted mb-4">
-                <small>Or sign in with credentials</small>
+          <div class="card border-0 mb-0 bg-primary mt-4">
+            <div class="card-body px-lg-5 py-lg-5 mt-4">
+
+              <div class="text-center text-muted mb-4 mt-4">
+                <small style="color: whitesmoke; font-size: large" >Admin-Log In</small>
               </div>
               <form method="post" th:object="${ownerLoginFromController}" th:action="@{/ownerlogin}">
                 <div class="form-group mb-3">
@@ -115,7 +88,7 @@
                 <div class="custom-control custom-control-alternative custom-checkbox">
                   <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
                   <label class="custom-control-label" for=" customCheckLogin">
-                    <span class="text-muted">Remember me</span>
+                    <span class="text-muted" style="color: white">Remember me</span>
                   </label>
                 </div>
                 <div class="text-center">
