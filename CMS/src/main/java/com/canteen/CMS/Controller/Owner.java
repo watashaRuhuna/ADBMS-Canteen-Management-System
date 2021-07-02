@@ -2,7 +2,7 @@ package com.canteen.CMS.Controller;
 
 import com.canteen.CMS.Entity.AddNewFoodEntity;
 import com.canteen.CMS.Entity.OwnerEntity;
-import com.canteen.CMS.Services.AddNewFoodService;
+import com.canteen.CMS.Services.FoodService;
 import com.canteen.CMS.Services.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +19,7 @@ public class Owner {
     private OwnerService ownerService;
 
     @Autowired
-    private AddNewFoodService addNewFoodService;
+    private FoodService foodService;
 
 
     @GetMapping(path = "owner_home")
@@ -61,7 +61,7 @@ public class Owner {
     @RequestMapping(path = "inventory",method = RequestMethod.GET)
     public String inventory(Model model) {
 
-        List<AddNewFoodEntity> addNewFoodEntities = addNewFoodService.getAllFood();
+        List<AddNewFoodEntity> addNewFoodEntities = foodService.getAllFood();
         model.addAttribute("allfood",addNewFoodEntities);
 
         return "owner/pages/inventory";
@@ -98,7 +98,7 @@ public class Owner {
     private String addNewFood(@ModelAttribute("addNewFoodFromController")AddNewFoodEntity addNewFoodEntity){
 
         //addNewFoodEntity.setCategory_type("asd");
-        addNewFoodService.addfoodtodb(addNewFoodEntity);
+        foodService.addfoodtodb(addNewFoodEntity);
         return "redirect:/addfood?success";
     }
 

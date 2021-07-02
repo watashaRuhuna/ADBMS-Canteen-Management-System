@@ -1,5 +1,4 @@
 package com.canteen.CMS.Services;
-
 import com.canteen.CMS.Entity.OwnerEntity;
 import com.canteen.CMS.Repository.OwnerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
