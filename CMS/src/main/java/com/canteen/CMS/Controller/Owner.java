@@ -8,9 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -118,12 +122,48 @@ public class Owner {
 
     }
 
+    //adding food
     @PostMapping("/AddNewFoodService")
-    private String addNewFood(@ModelAttribute("addNewFoodFromController")AddNewFoodEntity addNewFoodEntity){
 
-        //addNewFoodEntity.setCategory_type("asd");
+    private String addNewFood(@ModelAttribute("addNewFoodFromController")AddNewFoodEntity addNewFoodEntity,@RequestParam("imgfood") MultipartFile file
+    ){
+        //image
+        Path resourceDirectory = Paths.get("src","main","resources","static","assets","food_");
+        //CMS\src\main\resources\static\assets
+        String absoluteLink= resourceDirectory.toFile().getAbsolutePath();
+        try {
+            file.transferTo(new File(absoluteLink + file.getOriginalFilename()));
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        System.out.println(absoluteLink);
+        System.out.println(file);
+        addNewFoodEntity.setImg(file.getOriginalFilename());
+
+        //image end
+
         foodService.addfoodtodb(addNewFoodEntity);
         return "redirect:/addfood?success";
+    }
+
+    @PostMapping("/updateInventory")
+
+    private String updateInventory(@RequestParam("foodid") Integer id,@RequestParam("price") Float price,@RequestParam("qty") Integer qty){
+
+        //form data here
+            /*System.out.println(id);
+            System.out.println(price);
+            System.out.println(qty);*/
+
+        //pass data to OwnerService
+        //method updateFood
+        if(ownerService.updateFood(id,price,qty)){
+            return "redirect:/inventory?success";
+        }else{
+            return "redirect:/inventory?error";
+        }
+
+
     }
 
 

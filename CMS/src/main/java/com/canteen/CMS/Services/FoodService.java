@@ -14,7 +14,7 @@ public class FoodService {
     private FoodRepo foodRepo;
     public void addfoodtodb(AddNewFoodEntity addNewFoodEntity){
 
-
+        //insert data
         foodRepo.save(addNewFoodEntity);
     }
 
