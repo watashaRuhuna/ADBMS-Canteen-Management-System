@@ -1,8 +1,10 @@
 package com.canteen.CMS.Controller;
 
 import com.canteen.CMS.Entity.AddNewFoodEntity;
+import com.canteen.CMS.Entity.OrderEntity;
 import com.canteen.CMS.Entity.OwnerEntity;
 import com.canteen.CMS.Services.FoodService;
+import com.canteen.CMS.Services.OrderService;
 import com.canteen.CMS.Services.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +29,9 @@ public class Owner {
 
     @Autowired
     private FoodService foodService;
+
+    @Autowired
+    private OrderService orderService;
 
 
     @GetMapping(path = "owner_home")
@@ -58,11 +63,20 @@ public class Owner {
         return "owner/pages/addfood";
 
     }
-    @GetMapping(path = "breakfirst")
-    public String breakfirst() {
+    @RequestMapping(path = "breakfirst",method = RequestMethod.GET)
+    public String breakfirst(Model model) {
 
+        List<OrderEntity> breakFirst = orderService.breakfirstOrders();
+        model.addAttribute("breakfirst",breakFirst);
         return "owner/pages/breakfirst";
     }
+
+    @GetMapping(path = "lunch")
+    public String lunch() {
+
+        return "owner/pages/lunch";
+    }
+
     @GetMapping(path = "dinner")
     public String dinner() {
 
@@ -86,11 +100,7 @@ public class Owner {
     }
 
 
-    @GetMapping(path = "lunch")
-    public String lunch() {
 
-        return "owner/pages/lunch";
-    }
 
 
     @PostMapping("/ownerlogin")

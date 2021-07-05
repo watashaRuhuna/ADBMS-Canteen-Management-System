@@ -99,7 +99,7 @@ public class Home {
     }
 
     @PostMapping(path ="/confirmorderAction")
-    public String confirmOrder(@ModelAttribute("confirmOrderObj")OrderEntity orderEntity){
+    private String confirmOrder(@ModelAttribute("confirmOrderObj")OrderEntity orderEntity){
        //Date currentSqlDate = new Date(System.currentTimeMillis());
 /*
         orderEntity.setOrder_date(currentSqlDate);

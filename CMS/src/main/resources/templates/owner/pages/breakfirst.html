@@ -198,8 +198,8 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row">
+                        <tr th:each="breakf:${breakfirst}">
+                           <!-- <th scope="row">
                                 Supun Chalaka
                             </th>
                             <td>
@@ -213,7 +213,19 @@
                             </td>
                             <td>
                                 Rs. 1000
+                            </td>-->
+                            <td th:text="${breakf.getUser_id()}">
                             </td>
+
+                            <td th:text="${breakf.getOrder_id()}">
+                            </td>
+                            <td th:text="${breakf.getFood_id()}">
+
+                            </td>
+                            <td th:text="${breakf.getTotal_price()}">
+
+                            </td>
+                        </tr>
                             <td>
                                 <button class="btn btn-sm btn-primary">Issue</button>
                             </td>
