@@ -1,8 +1,11 @@
 package com.canteen.CMS.Controller;
 import com.canteen.CMS.Entity.AddNewFoodEntity;
+import com.canteen.CMS.Entity.OrderEntity;
 import com.canteen.CMS.Entity.UserEntity;
 import com.canteen.CMS.Services.FoodService;
+import com.canteen.CMS.Services.OrderService;
 import com.canteen.CMS.Services.UserService;
+import org.hibernate.query.criteria.internal.expression.function.CurrentDateFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,11 +28,15 @@ public class Home {
     @Autowired
     private FoodService foodService;
 
+    @Autowired
+    private OrderService orderService;
+
     @GetMapping(path = "/")
     public String home(Model model) {
         List<AddNewFoodEntity> addNewFoodEntities = foodService.getAllFood();
+        OrderEntity addNewOrder = new OrderEntity();
         model.addAttribute("allfoodlist",addNewFoodEntities);
-
+        model.addAttribute("confirmOrderObj",addNewOrder);
         return "index";
     }
 
@@ -84,9 +92,22 @@ public class Home {
         List<String> users= (List<String>) session.getAttribute("ÜSER_SESSION");
 
         if(users==null){
-            return "redirect:/";
+            return "redirect:/login";
         }else{
             return "user/user_home";
         }
+    }
+
+    @PostMapping(path ="/confirmorderAction")
+    public String confirmOrder(@ModelAttribute("confirmOrderObj")OrderEntity orderEntity){
+       //Date currentSqlDate = new Date(System.currentTimeMillis());
+/*
+        orderEntity.setOrder_date(currentSqlDate);
+        orderEntity.setIs_done(0);
+        orderEntity.setIs_cancel(0);
+        orderEntity.setUser_id(1);
+        orderEntity.setTotal_price(0);*/
+        orderService.addOrder(orderEntity);
+        return "redirect:/";
     }
 }

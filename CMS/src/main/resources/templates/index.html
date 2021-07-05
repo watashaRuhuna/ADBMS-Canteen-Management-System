@@ -114,24 +114,27 @@
 			</div>
 			<!--card start-->
 			<div class="row special-list">
-				<!--single card-->
-				<div class="col-lg-4 col-md-6 special-grid" th:each="foods:${allfoodlist}">
-					<div class="gallery-single fix">
-						<img src="indexassets/images/img-01.jpg" class="img-fluid" alt="Image">
-						<div class="why-text" >
-							<h5 th:text="${foods.category_type}" style="font-size: small"></h5>
-							<h4 th:text="${foods.food_name}"></h4>
 
-							<h5 th:text="${foods.unit_price}"></h5>
-							<input type="hidden" name="foodid" th:value="${foods.food_id}">
-							<button type="button" class="form-control btn btn-sm btn-secondary" data-toggle="modal" data-target="#exampleModal">Buy</button>
-							<br>
+				<!--single card-->
+				<div class="classformodal">
+					<div class="col-lg-4 col-md-6 special-grid" th:each="foods:${allfoodlist}" th:id="${foods.food_id}">
+						<div class="gallery-single fix">
+							<img src="indexassets/images/img-01.jpg" class="img-fluid" alt="Image">
+							<div class="why-text" >
+							<!--	<input type="hidden" id="cartfoodid" th:value="${foods.food_id}">-->
+								<h5 th:text="${foods.category_type}" class="foodtype" style="font-size: small"></h5>
+								<h4 th:text="${foods.food_name}" class="foodname"></h4>
+
+								<h5 th:text="${foods.unit_price}" class="foodprice"></h5>
+								<button type="submit" class="passdatatomodal btn" id="valuetomodalbtn" th:onclick="'loadtomodal(\'' + ${foods.food_id} + '\');'"  data-toggle="modal" data-target="#singleFoodModal">Buy</button>
+								<br>
+							</div>
 						</div>
 					</div>
 				</div>
 				<!--single card end supu-->
 				<!--model load here-->
-				<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal" aria-hidden="true">
+				<div class="modal fade" id="singleFoodModal" tabindex="-1" role="dialog" aria-labelledby="singleFoodModal" aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -140,19 +143,27 @@
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
-							<div class="modal-body">
-								<form>
+							<div class="modal-body" id="modal-body">
+								<form method="post" th:object="${confirmOrderObj}" th:action="@{/confirmorderAction}">
 									<div class="form-group">
-										<label for="food-details" class="col-form-label">Food Details:</label>
-										<input type="text" class="form-control" id="food-details" value="Rice" disabled>
+										<label for="foodname" class="col-form-label">Food Details:</label>
+										<input type="text" class="form-control" id="foodname" value="Rice" disabled>
 									</div>
 									<div class="form-group">
-										<label for="food-type" class="col-form-label">Food Type:</label>
-										<input type="text" class="form-control" id="food-type" value="Break First" disabled>
+										<input type="hidden" class="form-control" name="foodid" id="foodid" th:field="*{food_id}" >
+						<!--				<input type="hidden" class="form-control" name="er" id="rr" value="0" th:field="*{total_price}" >
+										<input type="hidden" class="form-control" name="rr" id="rfr" value="1" th:field="*{user_id}" >
+										<input type="hidden" class="form-control" name="rr" id="rfrr" value="08-02-2021" th:field="*{order_date}" >
+										<input type="hidden" class="form-control" name="rr" id="reefrr" value="0" th:field="*{is_cancel}" >
+										<input type="hidden" class="form-control" name="rr" id="rfddrr" value="0" th:field="*{is_done}" >-->
+									</div>
+									<div class="form-group">
+										<label for="foodtype" class="col-form-label">Food Type:</label>
+										<input type="text" class="form-control" id="foodtype" value="Break First" disabled th:field="*{food_type}">
 									</div>
 									<div class="form-group">
 										<label for="quntity" class="col-form-label">Quntity:</label>
-										<input type="number" class="form-control" min="0" id="quntity">
+										<input type="number" class="form-control" min="0" id="quntity" required th:field="*{order_qty}">
 									</div>
 								</form>
 							</div>
@@ -273,6 +284,26 @@
 	<!-- End Footer -->
 	
 	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+	<script type="text/javascript">
+
+
+		function loadtomodal(id){
+			// alert(id);
+			var name = $("#"+id+" .foodname").html();
+			var type = $("#"+id+" .foodtype").html();
+			var price = $("#"+id+" .foodprice").html();
+			/*console.log(price);
+			console.log(type);
+			console.log(name);
+			console.log(id);*/
+			$(".modal-body #foodid").val(id);
+			$(".modal-body #foodname").val(name);
+			$(".modal-body #foodtype").val(type);
+			$(".modal-body #foodprice").val(price);
+		}
+
+	</script>
+
 
 	<!-- ALL JS FILES -->
 	<script src="indexassets/js/jquery-3.2.1.min.js"></script>

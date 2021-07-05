@@ -18,6 +18,7 @@ public class UserService {
     }
 
     public void addUser(UserEntity userEntity){
+
         userRepo.save(userEntity);
 
     }
