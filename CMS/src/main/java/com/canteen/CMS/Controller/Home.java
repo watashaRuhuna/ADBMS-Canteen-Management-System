@@ -56,6 +56,7 @@ public class Home {
         return "register";
     }
 
+
   @PostMapping(path = "/login")
     public String userLogin(@ModelAttribute("UserLoginController") UserEntity userEntity, HttpServletRequest request){
      UserEntity loged_user= userService.userLogin(userEntity.getEmail(),userEntity.getPassword());
@@ -97,6 +98,7 @@ public class Home {
             return "user/user_home";
         }
     }
+
 
     @PostMapping(path ="/confirmorderAction")
     private String confirmOrder(@ModelAttribute("confirmOrderObj")OrderEntity orderEntity){
