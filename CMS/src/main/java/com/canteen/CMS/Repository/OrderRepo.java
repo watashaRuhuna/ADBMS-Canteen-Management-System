@@ -12,13 +12,13 @@ import java.util.List;
 @Repository
 public interface OrderRepo extends CrudRepository<OrderEntity,Integer> {
 
-    @Query(value = "SELECT u FROM OrderEntity u where 'food_type' = 'Breakfirst'")
+    @Query(value = "SELECT u FROM OrderEntity u where u.food_type = 'Breakfirst'")
     List<OrderEntity> getBreakFirst();
 
-    @Query(value = "SELECT u FROM OrderEntity u where 'food_type' = 'Lunch'")
+    @Query(value = "SELECT u FROM OrderEntity u where u.food_type = 'Lunch'")
     List<OrderEntity> getLunch();
 
-    @Query(value = "SELECT u FROM OrderEntity u where 'food_type' = 'Dinner'")
+    @Query(value = "SELECT u FROM OrderEntity u where u.food_type = 'Dinner'")
     List<OrderEntity> getDinner();
 
     @Query(value = "{call  order_history(:u_id)}",nativeQuery = true)

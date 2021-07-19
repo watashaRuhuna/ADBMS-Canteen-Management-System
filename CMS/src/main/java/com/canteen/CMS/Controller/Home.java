@@ -5,6 +5,7 @@ import com.canteen.CMS.Entity.UserEntity;
 import com.canteen.CMS.Services.FoodService;
 import com.canteen.CMS.Services.OrderService;
 import com.canteen.CMS.Services.UserService;
+import org.hibernate.Session;
 import org.hibernate.query.criteria.internal.expression.function.CurrentDateFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -101,15 +102,20 @@ public class Home {
 
 
     @PostMapping(path ="/confirmorderAction")
-    private String confirmOrder(@ModelAttribute("confirmOrderObj")OrderEntity orderEntity){
-       //Date currentSqlDate = new Date(System.currentTimeMillis());
-/*
-        orderEntity.setOrder_date(currentSqlDate);
-        orderEntity.setIs_done(0);
+    private String confirmOrder(@ModelAttribute("confirmOrderObj")OrderEntity orderEntity, HttpSession session){
+
+        List<String> ownerSessionid= (List<String>) session.getAttribute("ÜSER_SESSION");
+
+
+        Date currentSqlDate = new Date(System.currentTimeMillis());
         orderEntity.setIs_cancel(0);
-        orderEntity.setUser_id(1);
-        orderEntity.setTotal_price(0);*/
+        orderEntity.setTotal_price(0);
+        orderEntity.setIs_done(0);
+        orderEntity.setUser_id(Integer.parseInt(ownerSessionid.get(0)));
+        orderEntity.setOrder_date(currentSqlDate);
+        System.out.println(orderEntity.getOrder_qty());
         orderService.addOrder(orderEntity);
+
         return "redirect:/";
     }
 }

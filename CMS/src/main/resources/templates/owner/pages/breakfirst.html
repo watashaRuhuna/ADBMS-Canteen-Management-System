@@ -197,42 +197,28 @@
 
                         </tr>
                         </thead>
-                        <tbody>
+                        <form method="post" th:action="@{/issueorder}">
                         <tr th:each="breakf:${breakfirst}">
-                           <!-- <th scope="row">
-                                Supun Chalaka
-                            </th>
-                            <td>
-                              123658
-                            </td>
-                            <td>
-                                <ol>
-                                    <li>Bun : 2</li>
-                                    <li>Milk Packet : 2</li>
-                                </ol>
-                            </td>
-                            <td>
-                                Rs. 1000
-                            </td>-->
                             <td th:text="${breakf.getUser_id()}">
                             </td>
 
                             <td th:text="${breakf.getOrder_id()}">
                             </td>
                             <td th:text="${breakf.getFood_id()}">
-
+                             <!-- <input type="text" name="foodid" th:value="${breakf.getFood_id()}">-->
                             </td>
                             <td th:text="${breakf.getTotal_price()}">
 
                             </td>
-                        </tr>
+
                             <td>
-                                <button class="btn btn-sm btn-primary">Issue</button>
+                                <button type="submit" class="btn btn-sm btn-primary">Issue</button>
                             </td>
                         </tr>
+                        </form>
                         <tr>
                             <th scope="row">
-                                Sasini De Alwis
+                                Supun
                             </th>
                             <td>
                                 123610

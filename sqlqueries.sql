@@ -22,6 +22,38 @@ end//
 
 
 
+CREATE VIEW  orderuserdetails AS SELECT order_table.order_id,order_table.food_type,order_table.is_cancel,order_table.is_done,order_table.order_date,food_inventory.food_name,user.user_name,user.user_id FROM order_table,food_inventory,user WHERE order_table.food_id=food_inventory.food_id AND order_table.user_id=user.user_id AND order_table.order_date = CURRENT_DATE()
+
+
+delimiter //
+CREATE trigger orderdetailscount
+after insert on order_table for each row
+
+begin
+
+    declare foodname varchar(30);
+    declare foodtype varchar(30);
+    declare foodqty int default 0;
+    
+SELECT f.category_type into foodtype, COUNT(o.food_id) into foodqty, f.food_name into foodname FROM order_table o, food_inventory f WHERE o.order_date=curdate() and o.food_id=f.food_id GROUP by f.food_id;
+
+INSERT INTO order_count(count,date,food_name,foodtype)
+VALUE(foodqty,CURRENT_DATE(),foodname,foodtype);
+
+end//
+
+delimiter ;
+
+
+create index order_index on order_table(order_id);
+create index food_index on food_inventory(food_id);
+create index user_index on user(user_id);
+
+
+
+
+SHOW INDEX FROM food_inventory;
+
 
 
 

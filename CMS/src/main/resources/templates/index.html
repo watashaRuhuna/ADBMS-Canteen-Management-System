@@ -145,9 +145,13 @@
 							</div>
 							<form method="post" th:object="${confirmOrderObj}" th:action="@{/confirmorderAction}">
 							<div class="modal-body" id="modal-body">
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 									<div class="form-group">
 										<label for="foodname" class="col-form-label">Food Details:</label>
-										<input type="text" class="form-control" id="foodname" value="Rice" disabled>
+										<input type="text" class="form-control" id="foodname" value="Rice" readonly>
 									</div>
 									<div class="form-group">
 										<input type="hidden" class="form-control" name="foodid" id="foodid" th:field="*{food_id}" >
@@ -160,7 +164,7 @@
 									</div>
 									<div class="form-group">
 										<label for="foodtype" class="col-form-label">Food Type:</label>
-										<input type="text" class="form-control" id="foodtype" value="Break First" disabled th:field="*{food_type}">
+										<input type="text" class="form-control" id="foodtype" value="Breakfirst" readonly th:field="*{food_type}">
 									</div>
 									<div class="form-group">
 										<label for="quntity" class="col-form-label">Quntity:</label>
