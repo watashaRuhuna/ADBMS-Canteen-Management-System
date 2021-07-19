@@ -143,8 +143,8 @@
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
+							<form method="post" th:object="${confirmOrderObj}" th:action="@{/confirmorderAction}">
 							<div class="modal-body" id="modal-body">
-								<form method="post" th:object="${confirmOrderObj}" th:action="@{/confirmorderAction}">
 									<div class="form-group">
 										<label for="foodname" class="col-form-label">Food Details:</label>
 										<input type="text" class="form-control" id="foodname" value="Rice" disabled>
@@ -153,7 +153,8 @@
 										<input type="hidden" class="form-control" name="foodid" id="foodid" th:field="*{food_id}" >
 						<!--				<input type="hidden" class="form-control" name="er" id="rr" value="0" th:field="*{total_price}" >
 										<input type="hidden" class="form-control" name="rr" id="rfr" value="1" th:field="*{user_id}" >
-										<input type="hidden" class="form-control" name="rr" id="rfrr" value="08-02-2021" th:field="*{order_date}" >
+										<input type="hidden" class="form-control" name="rr" id="rfrr" value="08-
+02-2021" th:field="*{order_date}" >
 										<input type="hidden" class="form-control" name="rr" id="reefrr" value="0" th:field="*{is_cancel}" >
 										<input type="hidden" class="form-control" name="rr" id="rfddrr" value="0" th:field="*{is_done}" >-->
 									</div>
@@ -165,12 +166,13 @@
 										<label for="quntity" class="col-form-label">Quntity:</label>
 										<input type="number" class="form-control" min="0" id="quntity" required th:field="*{order_qty}">
 									</div>
-								</form>
+
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 								<input type="submit" class="btn btn-primary" name="Order Food">
 							</div>
+							</form>
 						</div>
 					</div>
 				</div>

@@ -32,4 +32,13 @@ public class OrderService {
 
         return (List<OrderEntity>) orderRepo.getDinner();
     }
+    public List<OrderEntity> order_history(Integer u_id){
+        return orderRepo.order_history(u_id);
+    }
+
+    public void OrderCancel(Integer order_id){
+        if(orderRepo.findById(order_id).isPresent()){
+            orderRepo.order_cancel(order_id);
+        }
+    }
 }

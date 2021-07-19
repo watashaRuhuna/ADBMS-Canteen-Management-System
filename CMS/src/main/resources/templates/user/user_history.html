@@ -181,38 +181,22 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>
-                                    123658
+                            <tr th:each="order:${orders}">
+                                <td th:text="${order.order_id}"></td>
+                                <td th:text="${order.food_type}"></td>
+                                <td th:text="${order.order_date}"></td>
+                                <td th:text="${order.total_price}"></td>
+                                <td th:if="${order.is_done==1}">
+                                    <label class="text-success">Success</label>
                                 </td>
-                                <td>
-                                    <ol>
-                                        <li>Bun : 2</li>
-                                        <li>Milk Packet : 2</li>
-                                    </ol>
+                                <td th:if="${order.is_cancel==1}">
+                                    <label class="text-danger">Canceled</label>
                                 </td>
-                                <th scope="row">
-                                    02-07-2021
-                                </th>
-                                <td>
-                                    Rs. 1000
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    123658
-                                </td>
-                                <td>
-                                    <ol>
-                                        <li>Bun : 2</li>
-                                        <li>Milk Packet : 2</li>
-                                    </ol>
-                                </td>
-                                <th scope="row">
-                                    02-07-2021
-                                </th>
-                                <td>
-                                    Rs. 1000
+                                <td th:if="${order.is_done==0 && order.is_cancel==0}">
+                                    <form method="post"  th:action="@{/order_cancel}">
+                                        <input type="hidden" name="orderId" th:value="${order.order_id}">
+                                        <button type="submit" class="btn btn-danger">Cancel</button>
+                                    </form>
                                 </td>
                             </tr>
 
