@@ -198,7 +198,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <form method="post" th:action="@{/issueorderd}">
+
                             <tr th:each="dinnero:${dinner}">
                                 <td th:text="${dinnero.getUser_id()}">
                                 </td>
@@ -212,11 +212,18 @@
 
                                 </td>
 
-                                <td>
+                                <td th:if="${dinnero.is_done==1}">
+                                    <label class="text-green">Issued</label>
+                                </td>
+
+                                <td th:if="${dinnero.is_done==0}">
+                                    <form method="post" th:action="@{/issueorderd}">
+                                        <input type="hidden" name="foodid" th:value="${dinnero.getOrder_id()}">
                                     <button type="submit" class="btn btn-sm btn-primary">Issue</button>
+                                    </form>
                                 </td>
                             </tr>
-                        </form>
+
                     </table>
                 </div>
             </div>

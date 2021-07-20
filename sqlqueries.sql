@@ -60,5 +60,14 @@ SHOW INDEX FROM food_inventory;
 
 
 
+delimiter //
+create procedure order_issue(in o_id int)
+begin
+UPDATE `order_table` SET is_done = '1' WHERE `order_id` = o_id;
+end//
+
+
+
+
 
 

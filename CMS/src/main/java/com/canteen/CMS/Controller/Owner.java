@@ -179,15 +179,32 @@ public class Owner {
 
 
     }
-/*    @PostMapping("/issueorderb")
-
-    private String issueOrder(@RequestParam("foodid") Integer id,@RequestParam("price") Float price,@RequestParam("qty") Integer qty){
 
 
+    @RequestMapping(path = "/issueorderb",method = RequestMethod.POST)
+    public String issueBreak(@RequestParam("foodid")Integer breakorderId){
 
-    return null;
-    }*/
+        System.out.println(breakorderId);
 
+        orderService.issueOrder(breakorderId);
+        return "redirect:/breakfirst";
+    }
 
+    @RequestMapping(path = "/issueorderd",method = RequestMethod.POST)
+    public String issueDinner(@RequestParam("foodid")Integer dinnerId){
+
+       System.out.println(dinnerId);
+
+        orderService.issueOrder(dinnerId);
+        return "redirect:/dinner";
+    }
+    @RequestMapping(path = "/issueorderl",method = RequestMethod.POST)
+    public String issueLunch(@RequestParam("foodid")Integer lunchId){
+
+         System.out.println(lunchId);
+
+        orderService.issueOrder(lunchId);
+        return "redirect:/lunch";
+    }
 
 }

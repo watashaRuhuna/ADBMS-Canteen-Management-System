@@ -28,4 +28,9 @@ public interface OrderRepo extends CrudRepository<OrderEntity,Integer> {
     @Query(value = "{call  order_cancel(:order_id)}",nativeQuery = true)
     @Transactional
     void order_cancel(Integer order_id);
+
+    @Modifying
+    @Query(value = "{call  order_issue(:order_id)}",nativeQuery = true) //call to stored procedure
+    @Transactional
+    void order_issue(Integer order_id);
 }

@@ -41,4 +41,10 @@ public class OrderService {
             orderRepo.order_cancel(order_id);
         }
     }
+
+    public void issueOrder(Integer order_id){
+        if(orderRepo.findById(order_id).isPresent()){
+            orderRepo.order_issue(order_id);
+        }
+    }
 }
