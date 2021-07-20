@@ -6,6 +6,7 @@ import com.canteen.CMS.Entity.OwnerEntity;
 import com.canteen.CMS.Services.FoodService;
 import com.canteen.CMS.Services.OrderService;
 import com.canteen.CMS.Services.OwnerService;
+import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -71,15 +72,18 @@ public class Owner {
         return "owner/pages/breakfirst";
     }
 
-    @GetMapping(path = "lunch")
-    public String lunch() {
+    @RequestMapping(path = "lunch", method =RequestMethod.GET )
+    public String lunch(Model model) {
+        List<OrderEntity> lunch = orderService.lunchOrders();
+        model.addAttribute("lunch",lunch);
 
         return "owner/pages/lunch";
     }
 
-    @GetMapping(path = "dinner")
-    public String dinner() {
-
+    @RequestMapping(path = "dinner", method = RequestMethod.GET)
+    public String dinner(Model model) {
+        List<OrderEntity> dinner = orderService.dinnerOrders();
+        model.addAttribute("dinner",dinner);
         return "owner/pages/dinner";
     }
     @GetMapping(path = "emergency")
@@ -175,7 +179,7 @@ public class Owner {
 
 
     }
-/*    @PostMapping("/issueorder")
+/*    @PostMapping("/issueorderb")
 
     private String issueOrder(@RequestParam("foodid") Integer id,@RequestParam("price") Float price,@RequestParam("qty") Integer qty){
 

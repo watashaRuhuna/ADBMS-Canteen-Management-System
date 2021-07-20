@@ -198,23 +198,25 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row">
+                        <form method="post" th:action="@{/issueorderl}">
+                            <tr th:each="luncho:${lunch}">
+                                <td th:text="${luncho.getUser_id()}">
+                                </td>
 
-                            </th>
-                            <td>
+                                <td th:text="${luncho.getOrder_id()}">
+                                </td>
+                                <td th:text="${luncho.getFood_id()}">
+                                    <!-- <input type="text" name="foodid" th:value="${breakf.getFood_id()}">-->
+                                </td>
+                                <td th:text="${luncho.getTotal_price()}">
 
-                            </td>
-                            <td>
+                                </td>
 
-                            </td>
-                            <td>
-
-                            </td>
-                            <td>
-                                <button class="btn btn-sm btn-primary">Issue</button>
-                            </td>
-                        </tr>
+                                <td>
+                                    <button type="submit" class="btn btn-sm btn-primary">Issue</button>
+                                </td>
+                            </tr>
+                        </form>
                         </tbody>
                     </table>
                 </div>
